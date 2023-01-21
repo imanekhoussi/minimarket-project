@@ -1,0 +1,499 @@
+  /* header style  */
+  :root{
+    --pink:#c77c5e;
+}
+
+*{
+    margin:0; padding:0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow-x: hidden;
+}
+
+section{
+    padding:2rem 9%;
+}
+.heading{
+    text-align: center;
+    font-size: 4rem;
+    color:rgb(65, 64, 63);
+    padding:1rem;
+    margin:2rem 0;
+    background:rgba(255, 51, 153,.05);
+}
+
+.heading span{
+    color:var(--pink);
+}
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background:#333;
+    color:#fff;
+    padding:.9rem 3.5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover{
+    background:var(--pink);
+}
+
+header{
+    position: fixed;
+    top:0; left:0; right:0;
+    background:#fff;
+    padding:2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+header .logo{
+    font-size: 3rem;
+    color:#333;
+    font-weight: bolder;
+}
+
+header .logo span{
+    color:var(--pink);
+}
+
+header .navbar a{
+    font-size: 2rem;
+    padding:0 1.5rem;
+    color:#666;
+}
+
+header .navbar a:hover{
+    color:var(--pink);
+}
+
+header .icons a{
+    font-size: 2.5rem;
+    color:#333;
+    margin-left: 1.5rem;
+}
+
+header .icons a:hover{
+    color:var(--pink);
+}
+
+header #toggler{
+    display: none;
+}
+
+header .fa-bars{
+    font-size: 3rem;
+    color:#333;
+    border-radius: .5rem;
+    padding:.5rem 1.5rem;
+    cursor: pointer;
+    border:.1rem solid rgba(0,0,0,.3);
+    display: none;
+}
+/* home background */
+.home{
+    
+    display: flex;
+    align-items: right;
+    min-height: 100vh;
+    background:url(../logo.png) no-repeat;
+    background-size: cover;
+    background-position: 100%;
+}
+
+.home .content{
+    margin-top: 20%;
+    max-width: 50rem;
+}
+
+.home .content h3{
+    font-size: 6rem;
+    color:#333;
+}
+
+.home .content span{
+    font-size: 3.5rem;
+    color:var(--pink);
+    padding:1rem 0;
+    line-height: 1.5;
+}
+
+.home .content p{
+    font-size: 1.5rem;
+    color:#999;
+    padding:1rem 0;
+    line-height: 1.5;
+}
+
+
+/* ======================================
+    Navigation Menu Style
+====================================== */
+#navMenu .navbar{
+    box-shadow: 0px 1px 3px #000;
+}
+
+.navbar-brand img{
+    width: 100px;
+}
+
+#navMenu .nav-link{
+    padding: 0px 10px;
+}
+
+#navMenu .nav-link:hover,
+#navMenu .active a{
+    color: coral;
+}
+
+
+/* ======================================
+    Index Header Style
+====================================== */
+#indexHeader{
+    background: url(images/back.jpg);
+    height: 550px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top 50px center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#indexHeader .col h1 span{
+    color: coral;
+}
+
+#indexHeader .col h1{
+    font-weight: 700;
+}
+
+#indexHeader .col .btn{
+    background: #000;
+    color: #fff;
+    margin-top: 20px;
+}
+
+
+/* ======================================
+    Brand Section Style
+====================================== */
+
+
+/* ======================================
+    New Section Style
+====================================== */
+#new{
+   position: relative;
+}
+
+#new .newContent h3{
+    font-weight: 700;
+}
+
+#new .newbg1{
+    background: url(images/new/1.jpg);
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+#new .newbg2{
+    background: url(images/new/3.jpg);
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+#new .newbg3{
+    background: url(images/new/5.jpg);
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.newContent{
+    position: absolute;
+    top: 50%;
+    display: inline;
+}
+
+
+/* ======================================
+    Featured Section Style
+====================================== */
+#featured h2{
+    font-weight: 700;
+}
+
+#featured h2::after{
+    content: '';
+    display: block;
+    height: 4px;
+    background: coral;
+    width: 50px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.product{
+    cursor: pointer;
+}
+
+.product img{
+    width: 100%;
+    transition: .3s;
+    height: 250px;
+}
+
+.product img:hover{
+    opacity: 0.8;
+}
+
+#featured .star{
+    color: goldenrod;
+}
+
+#featured .pPrice{
+    font-weight: 600;
+}
+
+#featured .product .btn{
+    background: coral;
+    color: #fff;
+    border-bottom: 2px solid rgb(206, 92, 51);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: .5s;
+}
+
+#featured .product:hover a{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ======================================
+    Banner Section Style
+====================================== */
+#banner{
+    background: url(images/banner/2.jpg);
+    height: 400px;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: top 120px center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+#banner h1{
+    font-weight: 700;
+}
+
+#banner .lead{
+    font-weight: 500;
+}
+
+#banner a{
+    background: coral;
+    color: #fff;
+    border-bottom: 2px solid rgb(206, 92, 51);
+    padding: 5px 20px;
+}
+
+
+/* ======================================
+    Footer Section Style
+====================================== */
+footer img{
+    width: 150px;
+}
+
+footer .col:nth-child(2){
+    background: red;
+}
+
+/* ======================================
+    Single Product Page Style
+====================================== */
+#sproduct img{
+    margin: 20px 0px;
+}
+
+.smallImg{
+    cursor: pointer;
+}
+
+/* formulaire opinion */
+
+ .contact .row{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap:1.5rem;
+    align-items: center;
+}
+
+.contact .row form{
+    flex:1 1 40rem;
+    padding:2rem 2.5rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    border:.1rem solid rgba(0,0,0,.1);
+    background: #fff;
+    border-radius: .5rem;
+}
+
+.contact .row .image{
+    flex:1 1 40rem;
+}
+
+.contact .row .image img{
+    width: 100%;
+}
+
+.contact .row form .box{
+    padding:1rem;
+    font-size: 1.7rem;
+    color:#333;
+    text-transform: none;
+    border:.1rem solid rgba(0,0,0,.1);
+    border-radius: .5rem;
+    margin:.7rem 0;
+    width: 100%;
+}
+
+.contact .row form .box:focus{
+    border-color: var(--pink);
+}
+
+.contact .row form textarea{
+    height: 15rem;
+    resize: none;
+}  
+input[type="submit"] {
+    
+    background-color: #daa560;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #f5b088;
+}
+/* FOOTER */
+.footer{
+    background-color:#e9c08a;
+}
+.footer .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.footer .box-container .box{
+    flex:1 1 25rem;
+}
+
+.footer .box-container .box h3{
+    color:#333;
+    font-size: 2.5rem;
+    padding:1rem 0;
+}
+
+.footer .box-container .box a{
+    display: block;
+    color:#666;
+    font-size: 1.5rem;
+    padding:1rem 0;
+}
+
+.footer .box-container .box a:hover{
+    color:var(--pink);
+    text-decoration: underline;
+}
+
+.footer .box-container .box  img{
+    margin-top: 1rem;
+}
+
+.footer .credit{
+    text-align: center;
+    padding:1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 2.5rem;
+    font-size: 2rem;
+    color:#333;
+    border-top: .1rem solid rgba(0,0,0,.1);
+    padding-bottom: 9rem;
+}
+
+.footer .credit span{
+    color:var(--pink);
+}
+/* ======================================
+    New Section Style
+====================================== */
+/* ======================================
+    New Section Style
+====================================== */
+/* ======================================
+    New Section Style
+====================================== */
+/* ======================================
+    New Section Style
+====================================== */
+/* ======================================
+    New Section Style
+====================================== */
+@media(max-width: 991px){
+    #navMenu .nav-link,
+    #navMenu form{
+        margin-top: 15px;
+        text-align: right;
+        justify-content: end;
+    }
+    #navMenu .navbar-toggler{
+        border: none;
+    }
+    #featured .product .btn{
+        background: coral;
+        color: #fff;
+        border-bottom: 2px solid rgb(206, 92, 51);
+        opacity: 1;
+        transform: translateY(0px);
+        transition: .5s;
+    }
+    #featured .product:hover a{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
