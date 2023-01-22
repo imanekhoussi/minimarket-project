@@ -46,52 +46,11 @@ require("config/commandes.php");
 
     
   </head>
+ 
   <body>
     
-<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Sign in</h4>
-          <ul class="list-unstyled">
-            <li><a href="login.php" class="text-white">Se connecter</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
-  <!-- header home contacte..... -->
-  <input type="checkbox" name="" id="toggler">
-    <label for="toggler" class="fas fa-bars"></label>
-
-    <a href="#" class="logo">Shoping<span>.</span></a>
-
-    <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#about">about</a>
-        <a href="#products">products</a>
-        <a href="#review">review</a>
-        <a href="#contact">contact</a>
-    </nav>
-
-    <div class="icons">
-        <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-shopping-cart"></a>
-        <a href="#" class="fas fa-user"></a>
-    </div>
-</header>
+  <?php include("include/header.php"); ?>
+  
 <section class="home" id="home">
     <div class="content">
         <h3>Shop_ing</h3>
@@ -160,43 +119,7 @@ require("config/commandes.php");
 
 <!-- footer section starts  -->
 
-<section class="footer">
-
-    <div class="box-container">
-
-        <div class="box">
-            <h3>quick links</h3>
-            <a href="#">home</a>
-            <a href="#">about</a>
-            <a href="#">products</a>
-            <a href="#">review</a>
-            <a href="#">contact</a>
-        </div>
-
-        <div class="box">
-            <h3>extra links</h3>
-            <a href="#">my account</a>
-            <a href="#">my order</a>
-            <a href="#">my favorite</a>
-        </div>
-
-        <div class="box">
-            <h3>locations</h3>
-            <a href="#"> TANGER</a>
-            <a href="#">RABAT</a>
-            <a href="#">AGADIR</a>
-            <a href="#">KENITRA</a>
-        </div>
-
-        <div class="box">
-            <h3>contact info</h3>
-            <a href="#">+212-661234532</a>
-            <a href="#">example@gmail.com</a>
-            <img src="payment.png" alt="">
-        </div>
-
-    </div>
-</section>
+<?php include("include/footer.php"); ?>
 
 <!-- footer section ends -->
   
