@@ -80,7 +80,6 @@ if(isset($_POST['cat'])){
 
 </main>
 
-<?php require("footer.php");?>
 
 
 
