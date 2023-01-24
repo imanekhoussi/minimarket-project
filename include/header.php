@@ -27,11 +27,24 @@
     <label for="toggler" class="fas fa-bars"></label>
 
     <a href="#" class="logo">Shoping<span>.</span></a>
+  
+   <form form method="POST" action="cat.php">
+  <div class="form-group">
+  <select id="dropdown" name="cat" onchange="this.form.submit()">
+          <option value="option1">All</option>
+          <option value="women's fashion">women's fashion</option>
+          <option value="men's fashion">men's fashion</option>
+          <option value="accessories">accessories</option>
+          <option value="beauty&makeup">beauty&makeup</option>
+         </select>
+    <input type="text" id="searchInput" name="search" placeholder="Search...">
+    <button type="submit" id="searchButton"> <i class="fas fa-search" aria-hidden="true"></i></button>
+  </div>
+</form>
 
     <nav class="navbar">
         <a href="#home">home</a>
         <a href="#about">about</a>
-        <a href="#products">products</a>
         <a href="#review">review</a>
         <a href="#contact">contact</a>
     </nav>
