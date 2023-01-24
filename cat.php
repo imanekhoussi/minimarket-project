@@ -36,6 +36,10 @@ if(isset($_POST['cat']) && isset($_POST['search']) ){
     {
         $selected = $_POST['cat'];
         $product = $_POST['search'];
+        
+        $stmt=$access->query("SELECT * FROM category WHERE  catégorie='$selected'");
+        $result = $stmt->fetch();
+        $category_id=$result['id'];
 
     }
 }
@@ -50,11 +54,13 @@ if(isset($_POST['cat']) && isset($_POST['search']) ){
 <div class="row">
 <div class="col-md-2"></div>
 
-      <?php foreach($Produits as $produit):
-        if(($produit->catégorie === $selected) || 
-           (preg_match("/.*$product.*/i", $produit->nom)) ||
-            (preg_match("/.*$product.*/i", $produit->description))||
-            (preg_match("/.*$product.*/i", $produit->catégorie))) { ?> 
+      <?php foreach($Produits as $produit)
+        {
+         $description=strpos($produit->description, $product);
+         $name=strpos($produit->nom, $product);
+
+
+           if(($produit->cat_id === $category_id) || ( $description== true) || ( $name== true) ){ ?> 
 
         <div class="col">
           <div class="card shadow-sm" style="margin-top: 25%">
@@ -74,7 +80,9 @@ if(isset($_POST['cat']) && isset($_POST['search']) ){
         </div>
    
   <?php
-} endforeach; ?>
+}
+}
+    endforeach; ?>
 
 
 <div class="col-md-2"></div>
