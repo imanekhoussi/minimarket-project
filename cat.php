@@ -30,11 +30,12 @@ require("header.php");
   $Produits=afficher();
 
 // get the selected value
-if(isset($_POST['cat'])){
+if(isset($_POST['cat']) && isset($_POST['search']) ){
     
-    if(!empty($_POST['cat']))
+    if(!empty($_POST['cat']) && !empty($_POST['search']) )
     {
         $selected = $_POST['cat'];
+        $product = $_POST['search'];
 
     }
 }
@@ -50,7 +51,10 @@ if(isset($_POST['cat'])){
 <div class="col-md-2"></div>
 
       <?php foreach($Produits as $produit):
-         if($produit ->catégorie === $selected) { ?> 
+        if(($produit->catégorie === $selected) || 
+           (preg_match("/.*$product.*/i", $produit->nom)) ||
+            (preg_match("/.*$product.*/i", $produit->description))||
+            (preg_match("/.*$product.*/i", $produit->catégorie))) { ?> 
 
         <div class="col">
           <div class="card shadow-sm" style="margin-top: 25%">
