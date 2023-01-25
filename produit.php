@@ -4,11 +4,12 @@ require("config/commandes.php");
 
 $Produits=afficher();
 
-if(isset($_GET['pdt'])){
+if(isset($_GET['pdt']) && isset($_GET['cat_id'])){
     
-    if(!empty($_GET['pdt']) OR is_numeric($_GET['pdt']))
+    if(!empty($_GET['pdt']) OR is_numeric($_GET['pdt']) && !empty($_GET['cat_id']) OR is_numeric($_GET['cat_id']) )
     {
         $id = $_GET['pdt'];
+        $cat=$_GET['cat_id'];
 
     }
 }
@@ -79,7 +80,6 @@ user-select: none;
 </div>
 </div>
 </header>
-
 <main>
 
 <div class="album py-5 bg-light">
@@ -97,14 +97,61 @@ user-select: none;
                 <p class="card-text"><?= $produit->description ?></p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                    <a href="produit.php?pdt=<?= $produit->id ?>"><button type="button" class="btn btn-sm btn-success">Commander</button></a>
-                    </div>
+                     <a href="checkout.php?pdt=<?= $produit->id ?>"> <button type="button" style="margin-left: 10px" class="btn btn-sm btn-success">checkout</button></a>
+    
+                </div>
+                                    
                     <small class="text" style="font-weight: bold;"><?= $produit->prix ?> €</small>
                 </div>
                 </div>
             </div>
             </div>
-<?php }} ?>
+           
+<?php
+ }
+} 
+
+?>
+
+<div class="col-md-2"></div>
+    </div>
+</div>
+</div>
+
+
+
+<div class="album py-5 bg-light">
+<div class="container" style="display: flex; justify-content: center">
+<div class="row">
+<div class="col-md-2"></div>
+
+      <?php foreach($Produits as $produit) {
+        
+
+        if(($produit->cat_id == $cat) && ($produit->id!=$id)){ ?> 
+
+        <div class="col">
+          <div class="card shadow-sm" style="margin-top: 25%">
+            <h3><?= $produit->nom ?></h3>
+            <img src="<?= $produit->image ?>" style="width: 24%">
+
+            <div class="card-body">
+              <p class="card-text"><?= substr($produit->description, 0, 160); ?>...</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                <a href="produit.php?pdt=<?= $produit->id?> &cat_id=<?= $produit->cat_id  ?>"><button type="button" class="btn btn-sm btn-success">Voir plus</button></a>
+                </div>
+                <small class="text" style="font-weight: bold;"><?= $produit->prix ?> €</small>
+              </div>
+            </div>
+          </div>
+        </div>
+   
+  <?php
+}
+}
+ ?>
+
 
 <div class="col-md-2"></div>
     </div>
@@ -112,9 +159,5 @@ user-select: none;
 </div>
 
 </main>
-<br>
-<br>
-<br>
-<br>
 </body>
 </html>
