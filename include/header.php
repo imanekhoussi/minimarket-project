@@ -32,10 +32,10 @@
   <div class="form-group">
   <select id="dropdown" name="cat" onchange="this.form.submit()">
           <option value="option1">All</option>
-          <option value="women">women's fashion</option>
-          <option value="men">men's fashion</option>
-          <option value="accessories">accessories</option>
-          <option value="beauty&makeup">beauty&makeup</option>
+          <option value="5">women's fashion</option>
+          <option value="2">men's fashion</option>
+          <option value="3">accessories</option>
+          <option value="1">beauty&makeup</option>
          </select>
     <input type="text" id="searchInput" name="search" placeholder="Search...">
     <button type="submit" id="searchButton"> <i class="fas fa-search" aria-hidden="true"></i></button>
