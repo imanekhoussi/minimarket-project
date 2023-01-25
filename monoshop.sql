@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3307
--- Généré le : mar. 24 jan. 2023 à 16:07
--- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 8.1.12
+-- Host: 127.0.0.1
+-- Generation Time: Jan 25, 2023 at 06:35 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,33 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `monoshop`
+-- Database: `monoshop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `pseudo` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `motdepasse` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `admin`
---
-
-INSERT INTO `admin` (`id`, `pseudo`, `email`, `motdepasse`) VALUES
-(33, 'sara', 'sara@admin.com', 'sara123');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -53,7 +33,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `catégorie`) VALUES
@@ -65,7 +45,7 @@ INSERT INTO `category` (`id`, `catégorie`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `produits`
+-- Table structure for table `produits`
 --
 
 CREATE TABLE `produits` (
@@ -78,7 +58,7 @@ CREATE TABLE `produits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Déchargement des données de la table `produits`
+-- Dumping data for table `produits`
 --
 
 INSERT INTO `produits` (`id`, `image`, `nom`, `prix`, `description`, `cat_id`) VALUES
@@ -90,59 +70,92 @@ INSERT INTO `produits` (`id`, `image`, `nom`, `prix`, `description`, `cat_id`) V
 (7, 'https://www.zinabel.ma/5863-home_default/mascara-lash-princess-false-lash-effect-waterproof-essence.jpg', 'Mascara Lash Princess', 8, 'Mascara Lash Princess\r\n12 ml\r\nLe mascara idéal pour tous les modes de vie hyperactifs. Le sport, la piscine, les larmes, ce mascara peut tout endurer et votre maquillage restera absolument impeccable.', 1),
 (8, 'https://i.insider.com/59aebd71b065da3b008b4ab7?width=1000&format=jpeg&auto=webp', 'Hills Stick Foundation', 25, 'Hills Stick Foundation\r\nThe Anastasia Beverly Hills Stick Foundation is a no-mess alternative for those who don\'t want to bother with liquid.', 1),
 (9, 'https://n.nordstrommedia.com/id/3e8ec79f-0d4b-40d2-a619-62a28c7a9fe7.jpeg?h=472&w=308', 'gold necklace', 12, 'gold necklace\r\nTreat yourself or someone special to 18-karat gold necklaces and bracelets personalized with up to five diamond-encrusted charms.', 3),
-(10, 'https://n.nordstrommedia.com/id/sr3/0e6fa481-0aa1-46a8-9ec3-b5bb02a7b468.jpeg?h=365&w=240&dpr=2', 'sunglasses for women', 8, 'sunglasses for women\r\nAn eye-catching silhouette defines sweet sunglasses with retro appeal.', 3);
+(10, 'https://n.nordstrommedia.com/id/sr3/0e6fa481-0aa1-46a8-9ec3-b5bb02a7b468.jpeg?h=365&amp;w=240&amp;dpr=2', 'sunglasses for women', 8, 'sunglasses for women\r\nAn eye-catching silhouette defines sweet sunglasses with retro appeal.', 3),
+(11, 'prodles bagues6.jpg', 'Bague ouverte à détail cœur', 1, 'Sexe:	Femme,Couleur:	Or jaune,Tissu/matériel:	Alliage de zinc,Style:	À la mode,détails:Cœur', 3),
+(12, '-0', 'Bague avec strass et infini', 1, 'Sexe:	Femme,Couleur:	Argent,Tissu/matériel:	Cuivre', 3),
+(13, 'prodles bagues4.jpg', 'Bague ouverte avec strass', 1, 'Sexe: Femme,Couleur:	Argent,Tissu/matériel:	Cuivre,détails:	Strass', 3),
+(14, 'prodles bagues1.jpg', 'Bague ouverte ajouré', 2, 'Sexe:	Femme,Couleur:Argent,Tissu/matériel:Acier inoxydableStyle:	À la modedétails:	maille', 3),
+(15, 'prodles bagues2.jpg', 'Bague ouverte en alliage', 3, 'Sexe:	Femme, Couleur:	Blanc, Tissu/matériel:	plastique ,Style:	À la mode', 3),
+(16, 'prodles bagues3.jpg', 'Bague ouverte rectangle', 3, 'Sexe:	Femme ,Couleur:	Multicolore ,Tissu/matériel:	Alliage de zinc ,Style:	À la mode ,détails:	Géométrique', 3),
+(17, 'prodles bagues7.jpg', 'Bague ouverte minimaliste', 4, 'Couleur:	Argent , Tissu/matériel:	Fer', 3);
+
+-- --------------------------------------------------------
 
 --
--- Index pour les tables déchargées
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `nom` varchar(10) NOT NULL,
+  `prenom` varchar(10) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `motdepasse` varchar(255) NOT NULL,
+  `shipping_address` varchar(255) NOT NULL,
+  `billing_info` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `role` enum('admin','client') NOT NULL DEFAULT 'client'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `nom`, `prenom`, `email`, `motdepasse`, `shipping_address`, `billing_info`, `phone_number`, `role`) VALUES
+(1, 'sara', 'wardi', 'sara@admin.com', 'sara', '', NULL, NULL, 'admin'),
+(3, 'sara', 'wardi', 'sara@mail.com', 'sara123', '', NULL, NULL, 'client');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `produits`
+-- Indexes for table `produits`
 --
 ALTER TABLE `produits`
   ADD PRIMARY KEY (`id`),
   ADD KEY `test` (`cat_id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT pour la table `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT pour la table `produits`
+-- AUTO_INCREMENT for table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- Contraintes pour les tables déchargées
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `produits`
+-- Constraints for table `produits`
 --
 ALTER TABLE `produits`
   ADD CONSTRAINT `test` FOREIGN KEY (`cat_id`) REFERENCES `category` (`id`);
