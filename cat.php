@@ -30,17 +30,14 @@ require("header.php");
   $Produits=afficher();
 
 // get the selected value
-if(isset($_POST['cat']) && isset($_POST['search']) ){
+if(isset($_POST['cat']) || isset($_POST['search']) ){
     
-    if(!empty($_POST['cat']) && !empty($_POST['search']) )
+    if(!empty($_POST['cat']) || !empty($_POST['search']) )
     {
         $selected = $_POST['cat'];
         $product = $_POST['search'];
         
-        $stmt=$access->query("SELECT * FROM category WHERE  catégorie='$selected'");
-        $result = $stmt->fetch();
-        $category_id=$result['id'];
-
+     
     }
 }
 
@@ -60,7 +57,7 @@ if(isset($_POST['cat']) && isset($_POST['search']) ){
          $name=strpos($produit->nom, $product);
 
 
-           if(($produit->cat_id === $category_id) || ( $description== true) || ( $name== true) ){ ?> 
+           if(($produit->cat_id === $selected) || ( $description== true) || ( $name== true) ){ ?> 
 
         <div class="col">
           <div class="card shadow-sm" style="margin-top: 25%">
