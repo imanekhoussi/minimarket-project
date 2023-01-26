@@ -1,6 +1,7 @@
 <?php
 
 require("config/commandes.php");
+session_start();
 
 $Produits=afficher();
 
@@ -128,7 +129,9 @@ user-select: none;
       <?php foreach($Produits as $produit) {
         
 
-        if(($produit->cat_id == $cat) && ($produit->id!=$id)){ ?> 
+        if(($produit->cat_id == $cat) && ($produit->id!=$id)){ 
+         $_SESSION['id']=$produit->id;
+    ?> 
 
         <div class="col">
           <div class="card shadow-sm" style="margin-top: 25%">
@@ -142,6 +145,8 @@ user-select: none;
                 <a href="produit.php?pdt=<?= $produit->id?> &cat_id=<?= $produit->cat_id  ?>"><button type="button" class="btn btn-sm btn-success">Voir plus</button></a>
                 </div>
                 <small class="text" style="font-weight: bold;"><?= $produit->prix ?> €</small>
+                                      <?php $_SESSION['price']=$produit->prix?>
+
               </div>
             </div>
           </div>
