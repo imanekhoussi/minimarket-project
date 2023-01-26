@@ -7,7 +7,12 @@ if(isset($_SESSION['xRttpHo0greL39']))
 {
     if(!empty($_SESSION['xRttpHo0greL39']))
     {
-        header("Location: admin/afficher.php");
+        if(strpos($_SERVER['HTTP_REFERER'], 'payment.php') !== false) {
+           include("checkout.php");
+        } else {
+            header("Location: admin/afficher.php");
+        }
+
     }
 }
 
@@ -68,7 +73,11 @@ if(isset($_POST['envoyer']))
             $_SESSION['xRttpHo0greL39'] = $admin;
             header('Location: admin/afficher.php');
         }else{
-            header('Location: index.php');
+            if(strpos($_SERVER['HTTP_REFERER'], 'payment.php') !== false) {
+                header("Location: checkout.php");
+            } else {
+                header('Location: index.php');            }
+            
         }
     }
 
