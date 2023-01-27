@@ -32,8 +32,9 @@ include("checkform.html");
     
             $insert=$access->prepare('INSERT  INTO checkout(email,full_name, adress,total_price, prod_id, city, stat, zip) VALUES (?,?,?,?,?,?,?,?)');
             $insert->execute(array($email, $fname, $adr,$prix, $id ,$city, $state, $zip));
-            echo "tout les champs ont été bien ajoutés";
-            }
+            $checkout_id = $access->lastInsertId();
+            echo $checkout_id;
+            header("Location: checked.php?id=".$checkout_id);            }
             else {
                 echo "tout les champs sont obligatoires";
     
