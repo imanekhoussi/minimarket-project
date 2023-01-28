@@ -1,21 +1,15 @@
 <?php
 
 
-if(isset($_SESSION['xRttpHo0greL39']))
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) 
 {
-    if(!empty($_SESSION['xRttpHo0greL39']))
-    {
+   
        include("checkout.php");
     }
-}
+
 else{
+
     include("login.php");
-    if(isset($_SESSION['xRttpHo0greL39']))
-{
-    if(!empty($_SESSION['xRttpHo0greL39']))
-    {
-       include("checkout.php");
-    }
-}
+
 }
 ?>
