@@ -1,46 +1,60 @@
 <?php
- 
- /*require './vendor/autoload.php';
- header('Content-Type', 'application/json');
- \Stripe\Stripe::setApiKey("sk_test_51MUBRzF1PqiAs7xKLRqOUPdEcv8LHdhldEXYsh7YrhrQK2Jh8vGjD8fw9WUG5QTiEH3nhPS2vcMWNOsjtAYy6mbI00WhVFE9a4");
-
-*/
-?>
-
-
-
-<?php
-
 
 require("config/connexion.php");
-include("checkform.html");
+include("checkform.php");
 
+session_start();
+$id=$_SESSION['id'];
+$prix=$_SESSION['price'];
+$clt_id=$_SESSION['user_id'];
 
-  session_start();
-  $id=$_SESSION['id'];
-  $prix=$_SESSION['price'];
-    if(isset($_POST["fullname"]) && isset($_POST["email"]) && isset($_POST["address"])
+// Create an error variable
+$errors = "";
+
+// Check if form was submitted
+if(isset($_POST["fullname"]) && isset($_POST["email"]) && isset($_POST["address"])
      && isset($_POST["city"])  && isset($_POST["state"]) && isset($_POST["zip"])) {
-        if(!empty($_POST["fullname"]) && !empty($_POST["email"]) && !empty($_POST["address"])
-        && !empty($_POST["city"]) && !empty($_POST["state"]) && !empty($_POST["zip"])) {
-            $fname=htmlspecialchars($_POST["fullname"]);
-            $email=htmlspecialchars($_POST["email"]);
-            $adr=htmlspecialchars($_POST["address"]);
-            $city=htmlspecialchars($_POST["city"]);
-            $state=htmlspecialchars($_POST["state"]);
-            $zip=htmlspecialchars($_POST["zip"]);
-    
-            $insert=$access->prepare('INSERT  INTO checkout(email,full_name, adress,total_price, prod_id, city, stat, zip) VALUES (?,?,?,?,?,?,?,?)');
-            $insert->execute(array($email, $fname, $adr,$prix, $id ,$city, $state, $zip));
+  // Remove whitespaces
+  $fullname = trim($_POST["fullname"]);
+  $email = trim($_POST["email"]);
+  $address = trim($_POST["address"]);
+  $city = trim($_POST["city"]);
+  $state = trim($_POST["state"]);
+  $zip = trim($_POST["zip"]);
+
+  // Check if any fields are empty
+  if (empty($fullname) || empty($email) || empty($address) || empty($city) || empty($state) || empty($zip)) {
+    $errors = "All fields are required.";
+    echo $errors;
+  } 
+  // Check if email is valid
+  else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors = "Invalid email address.";
+    echo $errors;
+  } 
+  // Check if BP is valid (e.g. 3 letters)
+  else if (!preg_match("/^[0-9]{3}$/", $state)) {
+    $errors = "Invalid BP code. Please use 3 digit BP code.";
+    echo $errors;
+  }
+  // Check if zip code is valid (e.g. 5 digits)
+  else if (!preg_match("/^[0-9]{5}$/", $zip)) {
+    $errors = "Invalid zip code. Please use 5 digit postal code.";
+    echo $errors;
+  }
+  else {
+    // Proceed with rest of script (e.g. insert data into database)
+           
+            $insert=$access->prepare('INSERT  INTO checkout( clt_id, email,full_name, adress,total_price, prod_id, city, stat, zip) VALUES (?,?,?,?,?,?,?,?,?)');
+            $insert->execute(array($clt_id, $email, $fullname, $address,$prix, $id ,$city, $state, $zip));
             $checkout_id = $access->lastInsertId();
-            echo $checkout_id;
-            header("Location: checked.php?id=".$checkout_id);            }
-            else {
-                echo "tout les champs sont obligatoires";
+            $_SESSION['checkout_id'] = $checkout_id;
+             header("Location: checked.php");
+          }
+  }
+
+     
+            
     
-            }
-    }
 
 
-
-?>
