@@ -1,20 +1,7 @@
 <?php
 session_start();
 
-include "config/commandes.php";
-
-if(isset($_SESSION['xRttpHo0greL39']))
-{
-    if(!empty($_SESSION['xRttpHo0greL39']))
-    {
-        if(strpos($_SERVER['HTTP_REFERER'], 'payment.php') !== false) {
-           include("checkout.php");
-        } else {
-            header("Location: admin/afficher.php");
-        }
-
-    }
-}
+include "config/connexion.php";
 
 
 
@@ -26,29 +13,23 @@ if(isset($_SESSION['xRttpHo0greL39']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Login_Soping</title>
+    <title>Login</title>
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
-
 <div class="container" style="display: flex; justify-content: start-end">
     <div class="row">
         <div class="col-md-10">
 
-        <form method="post">
+        <form method="post" id="sign-in-form">
             <div class="mb-3">
                 <label for="email" class="form-label">Login</label>
-                <input type="email" name="email" class="form-control" style="width: 350%;" >
+                <input type="email" name="email" class="form-control"  >
             </div>
             <div class="mb-3">
                 <label for="motdepasse" class="form-label">Mot de passe</label>
-                <input type="password" name="motdepasse" class="form-control" style="width: 350%;">
+                <input type="password" name="motdepasse" class="form-control">
             </div>
-            <br>
-            <input type="submit" name="envoyer" class="btn btn-info" value="Se connecter">
+            <input type="submit" name="envoyer" class="btn btn-info" value="Se connecter" >
         </form>
 
         </div>
@@ -60,27 +41,63 @@ if(isset($_SESSION['xRttpHo0greL39']))
 
 <?php
 
-if(isset($_POST['envoyer']))
-{
-    if(!empty($_POST['email']) AND !empty($_POST['motdepasse']))
-    {
-        $login = htmlspecialchars(strip_tags($_POST['email'])) ;
-        $motdepasse = htmlspecialchars(strip_tags($_POST['motdepasse']));
+require_once 'config/connexion.php';
 
-        $admin = getAdmin($login, $motdepasse);
 
-        if($admin){
-            $_SESSION['xRttpHo0greL39'] = $admin;
-            header('Location: admin/afficher.php');
-        }else{
-            if(strpos($_SERVER['HTTP_REFERER'], 'payment.php') !== false) {
-                header("Location: checkout.php");
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Get the email and password from the form
+        $email = $_POST['email'];
+        $motdepasse = $_POST['motdepasse'];
+        
+        //connect to the database
+        
+        // Prepare the statement
+        $stmt = $access->prepare("SELECT * FROM users WHERE email=:email AND motdepasse=:motdepasse");
+$stmt->bindValue(':email', $email);
+$stmt->bindValue(':motdepasse', $motdepasse);
+$stmt->execute();
+$result = $stmt->fetch();
+
+        
+        if ($stmt->rowCount() > 0) {
+            // login was successful
+            echo "success";
+            $_SESSION['nom'] = $result['prenom'];
+            $_SESSION['role'] = $result['role'];
+            if ($result['role'] === 'admin') {
+                header('Location: index.php');
             } else {
-                header('Location: index.php');            }
-            
+                // user is not an admin
+                header('Location: index.php');
+            }
+        } else {
+            // login failed
+            echo "fail";
         }
+    } else {
+        // form has not been submitted, display login form
+        // ...
     }
 
-}
+
+
 
 ?>
+<script>
+    $(document).ready(function(){
+    $("#sign-in-form").hide();
+    $("#sign-in-option").click(function(){
+        $("#sign-in-form").toggle();
+    });
+});
+
+</script>
+<style>
+    .btn{
+        font-size: 1.3em;
+        width:auto;
+    }
+    .row{
+        width:150;
+    }
+</style>
