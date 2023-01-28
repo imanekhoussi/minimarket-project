@@ -28,22 +28,22 @@ require("config/connexion.php");
           <div class="col-50">
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="fullname" placeholder="John M. Doe">
+            <input type="text" id="fname" name="fullname" placeholder="exemple: Nom Prénom">
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="myname@example.com">
+            <input type="text" id="email" name="email" placeholder="exemple: myname@example.com">
             <label for="adr"><i class="fas fa-address-card"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+            <input type="text" id="adr" name="address" placeholder="exemple: 6, Rue Mohamed Jazouli">
             <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="New York">
+            <input type="text" id="city" name="city" placeholder="exemple: Casablanca">
 
             <div class="row">
               <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="NY">
+                <label for="state">boite postal</label>
+                <input type="text" id="state" name="state" placeholder="exemple: 425">
               </div>
               <div class="col-50">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="10001">
+                <label for="zip">code postal</label>
+                <input type="text" id="zip" name="zip" placeholder="exemple: 20001">
                 <label>
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
