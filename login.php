@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 
@@ -61,14 +63,21 @@ $result = $stmt->fetch();
         
         if ($stmt->rowCount() > 0) {
             // login was successful
+            $_SESSION['logged_in'] = true;
             echo "success";
+            $_SESSION['user_id'] = $result['user_id'];
+
             $_SESSION['nom'] = $result['prenom'];
             $_SESSION['role'] = $result['role'];
             if ($result['role'] === 'admin') {
                 header('Location: index.php');
             } else {
                 // user is not an admin
-                header('Location: index.php');
+                if(strpos($_SERVER['HTTP_REFERER'], 'payment.php') !== false) {
+                    header("Location: checkout.php");
+                } else {
+                    header('Location: index.php');    
+                        }
             }
         } else {
             // login failed
